@@ -157,7 +157,6 @@
     <Compile Include="Services\InventoryService.cs" />
     <Compile Include="Services\OrderService.cs" />
     <Compile Include="Services\PaymentService.cs" />
-    <Compile Include="Services\ShippingService.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />

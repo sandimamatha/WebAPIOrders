@@ -7,17 +7,17 @@ using WebAPI.Models;
 
 namespace WebAPI.Services
 {
-    public class OrderService
+    public class OrderService: IOrderService
     {
         private readonly IInventoryService _inventoryService;
         private readonly IPaymentService _paymentService;
         private readonly IEmailService _emailService;
 
-        public OrderService(IInventoryService inventoryService, IPaymentService paymentService, IEmailService emailService)
+        public OrderService()
         {
-            _inventoryService = inventoryService;
-            _paymentService = paymentService;
-            _emailService  = emailService;
+            _inventoryService =  new InventoryService();
+            _paymentService = new PaymentService();
+            _emailService  =  new EmailService();
         }
         public void Order(Order order)
         {
