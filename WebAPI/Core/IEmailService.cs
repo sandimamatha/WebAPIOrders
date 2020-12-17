@@ -7,6 +7,6 @@ namespace WebAPI.Core
 {
     public interface IEmailService
     {
-        void SendEmail(string toAddress, string subject);
+        bool SendEmail(string toAddress, string subject);
     }
 }

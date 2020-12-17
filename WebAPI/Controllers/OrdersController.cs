@@ -11,15 +11,15 @@ namespace WebAPI.Controllers
 {
     public class OrdersController : ApiController
     {
-        private readonly IOrderService _iorderService;
+        private readonly IOrderService _orderService;
 
-        public OrdersController(IOrderService _iorderService)
+        public OrdersController(IOrderService orderService)
         {
-           
+            _orderService = orderService;
         }
         public void Post([FromBody]Order order)
         {
-            _iorderService.Order(order);
+            _orderService.Order(order);
         }
        
     }

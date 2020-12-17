@@ -9,27 +9,32 @@ namespace WebAPI.Services
 {
     public class OrderService
     {
-        private readonly IInventoryService _iinventoryService;
-        private readonly IPaymentService _ipaymentService;
-        private readonly IEmailService _iemailService;
+        private readonly IInventoryService _inventoryService;
+        private readonly IPaymentService _paymentService;
+        private readonly IEmailService _emailService;
 
-        public OrderService(IInventoryService _iinventoryService, IPaymentService _ipaymentService)
+        public OrderService(IInventoryService inventoryService, IPaymentService paymentService, IEmailService emailService)
         {
-           
+            _inventoryService = inventoryService;
+            _paymentService = paymentService;
+            _emailService  = emailService;
         }
         public void Order(Order order)
         {
             bool isProductAvailable;
             bool isCharged;
-            isProductAvailable = _iinventoryService.CheckInventory(order.ProductId, order.Qty);
+            isProductAvailable = _inventoryService.CheckInventory(order.ProductId, order.Qty);
 
             if (isProductAvailable)
             {
-                isCharged = _ipaymentService.ChargePayment(order.payment.CreditCardNumber, order.payment.Amount);
+                Payment payment = new Payment();
+                payment.CreditCardNumber = "1234123412341234";
+                payment.Amount = 12;
+                isCharged = _paymentService.ChargePayment(payment.CreditCardNumber, payment.Amount);
 
                 if (isCharged)
                 {
-                    _iemailService.SendEmail("sandimamatha@gmail.com", "Please place this order");
+                    _emailService.SendEmail("sandimamatha@gmail.com", "Please place this order");
                 }
             }
         }

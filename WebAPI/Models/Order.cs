@@ -9,6 +9,5 @@ namespace WebAPI.Models
     {
         public string ProductId;
         public int Qty;
-        public Payment payment { get; set; }
     }
 }
